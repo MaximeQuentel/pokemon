@@ -1,0 +1,9 @@
+CorrelationId: 71920ab4-7076-4ccb-ab47-eb26a41a5cb4
+UTC DateTime: 03/10/2026 13:12:41
+
+The following files/folders have not been downloaded
+0. Fichiers/fast_moves.js
+1. Fichiers/pokemon_moves.js
+2. Fichiers/pokemon_types.js
+3. Fichiers/pokemons.js
+4. Fichiers/type_effectiveness.js
