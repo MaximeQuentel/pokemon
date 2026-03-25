@@ -4,19 +4,26 @@ class Type {
         this.effectiveness = effectiveness;
     }
 
-    toString() {
-        const groupe = {};
+    prepa_dico() {
+        let dico = {};
 
-        for (const [defenderType, rate] of Object.entries(this.effectiveness)) {
-            if (!groupe[rate]) groupe[rate] = [];
-            groupe[rate].push(defenderType);
+        let tablo_def = type_effectiveness[this.name];
+
+        for (let type in tablo_def) {
+
+            let coeff = tablo_def[type];
+
+            if (!(coeff in dico)) {
+                dico[coeff] = [];
+            }
+            dico[coeff].push(type);
         }
 
-        const text = Object.entries(groupe)
-            .map(([rate, defenderTypes]) => `${rate} = [${defenderTypes.join(', ')}]`)
-            .join(', ');
+        return dico;
+    }
 
-        return `${this.name} : ${text}`;
+    toString() {
+        return `${this.name} : ${JSON.stringify(this.prepa_dico())}`;
     }
 }
 
@@ -24,7 +31,7 @@ Type.all_types = {};
 
 function fill_types() {
     Type.all_types = {};
-    for (const [name, effectiveness] of Object.entries(type_effectiveness)) {
+    for (let [name, effectiveness] of Object.entries(type_effectiveness)) {
         Type.all_types[name] = new Type(name, effectiveness);
     }
 }
