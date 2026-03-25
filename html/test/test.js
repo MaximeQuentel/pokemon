@@ -1,5 +1,8 @@
 // Q1 affichant, dans la console, la liste des Pokémons pour un type donné (en argument).
 
+Attack.fill_attacks();
+Pokemon.fill_pokemons();
+
 function getPokemonByType(typeName){
     const type = Type.all_types[typeName];
     if (!type) {
@@ -8,7 +11,7 @@ function getPokemonByType(typeName){
     }
 
     const pokemonsOfType = [];
-    for (const pokemon of Pokemon.all_pokemons.values()) {
+    for (const pokemon of Object.values(Pokemon.all_pokemons)) {
         if (pokemon.types.includes(typeName)) {
             pokemonsOfType.push(pokemon);
         }
@@ -21,7 +24,7 @@ function getPokemonByType(typeName){
 
 function getPokemonsByAttack(attackName){
     const pokemonsWithAttack = [];
-    for (const pokemon of Pokemon.all_pokemons.values()) {
+    for (const pokemon of Object.values(Pokemon.all_pokemons)) {
         const attacks = [...pokemon.fast_moves, ...pokemon.charged_moves];
         if (attacks.some(attack => attack.nom === attackName)) {
             pokemonsWithAttack.push(pokemon);
@@ -41,7 +44,7 @@ function getAttacksByType(typeName){
     }
 
     const attacksOfType = [];
-    for (const pokemon of Pokemon.all_pokemons.values()) {
+    for (const pokemon of Object.values(Pokemon.all_pokemons)) {
         const attacks = [...pokemon.fast_moves, ...pokemon.charged_moves];
         for (const attack of attacks) {
             if (attack.type === typeName && !attacksOfType.includes(attack)) {
@@ -51,4 +54,8 @@ function getAttacksByType(typeName){
     }
 
     return attacksOfType;
+}
+
+function getPokemonsByType(typeName) {
+    return getPokemonByType(typeName);
 }

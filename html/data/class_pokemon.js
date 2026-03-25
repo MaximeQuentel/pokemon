@@ -1,5 +1,5 @@
 class Pokemon {
-    static all_pokemons = new Map();
+    static all_pokemons = {};
 
     constructor(id, nom, stamina, attack, defense, types, fast_moves, charged_moves) {
         this.id = id;
@@ -25,9 +25,11 @@ class Pokemon {
     }
 
     static fill_pokemons() {
+        this.all_pokemons = {};
+
         pokemons.forEach(pokemon => {
             const pkmn = new Pokemon(pokemon.id, pokemon.name, pokemon.stamina, pokemon.attack, pokemon.defense, pokemon.types, pokemon.fast_moves, pokemon.charged_moves);
-            this.all_pokemons.set(pokemon.id, pkmn);
+            this.all_pokemons[pokemon.id] = pkmn;
         });
     }
 }
