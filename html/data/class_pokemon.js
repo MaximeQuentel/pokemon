@@ -21,7 +21,7 @@ class Pokemon {
     }
 
     getAttacks() {
-        return this.attack.concat(this.fast_moves).concat(this.charged_moves);
+        return this.fast_moves.concat(this.charged_moves);
     }
 
     static fill_pokemons() {
