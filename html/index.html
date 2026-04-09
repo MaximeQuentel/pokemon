@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon</title>
-    <style src="style.css"></style>
+    <link rel="stylesheet" href="style.css">
+    <script src="data/pokemons.js"></script>
+    <script src="data/type_effectiveness.js"></script>
+    <script src="js/class_type.js"></script>
+    <script src="js/class_attack.js"></script>
+    <script src="js/class_pokemon.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
     <h1>Liste des pokémons</h1>
+    <form id="filtre" action="">
+        <label for="type">Type :</label>
+        <select name="type" id="type">
+        </select>
+        <label for="attaquesRapides">Attaques Rapides :</label>
+        <select name="attaquesRapides" id="attaquesRapides">
+        </select>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" placeholder="Rechercher un pokémon...">
+    </form>
     <table>
         <thead>
             <tr>
@@ -22,9 +35,9 @@
                 <th>Image</th>
             </tr>
         </thead>
-        <tbody id="liste-pokemon"></tbody> #Le reste du tableau ou seront affiches les pokemon
+        <tbody id="liste-pokemon"></tbody> <!-- Le reste du tableau ou seront affiches les pokemon -->
     </table>
-    <div style="margin-top: 20px;">
+    <div>
         <button id="prec">PREC</button>
         <button id="suiv">SUIV</button>
     </div>
