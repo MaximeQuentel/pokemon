@@ -4,32 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokémon</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f4f9;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
-    <script src="data/pokemons.js"></script>
+    <style src="style.css"></style>
+    <script src="js/script.js"></script>
 </head>
 <body>
     <h1>Liste des pokémons</h1>
@@ -46,44 +22,11 @@
                 <th>Image</th>
             </tr>
         </thead>
-        <tbody id="pokemon-table-body"></tbody>
+        <tbody id="liste-pokemon"></tbody> #Le reste du tableau ou seront affiches les pokemon
     </table>
-
     <div style="margin-top: 20px;">
         <button id="prec">PREC</button>
         <button id="suiv">SUIV</button>
     </div>
-
-    <script>
-        // On cible le tbody par son ID
-        const tableBody = document.getElementById("pokemon-table-body");
-
-        function chargerTableau() {
-            let lignes = "";
-
-            // 'pokemons' provient de votre fichier pokemon.js
-            pokemons.forEach(p => {
-                // Note : J'ai mis "N/A" pour Génération et Types car ils ne semblent pas être 
-                // dans votre extrait d'objet. Adaptez si vous avez p.generation ou p.type.
-                lignes += `
-                    <tr>
-                        <td>${p.pokemon_id}</td>
-                        <td>${p.pokemon_name}</td>
-                        <td>N/A</td> 
-                        <td>N/A</td>
-                        <td>${p.base_stamina}</td>
-                        <td>${p.base_attack}</td>
-                        <td>${p.base_defense}</td>
-                        <td><img src="webp/images/${String(p.pokemon_id).padStart(3, '0')}.webp" width="50" alt="${p.pokemon_name}"></td>
-                    </tr>
-                `;
-            });
-
-            tableBody.innerHTML = lignes;
-        }
-
-        // Lancement au chargement de la page
-        window.onload = chargerTableau;
-    </script>
 </body>
 </html>
