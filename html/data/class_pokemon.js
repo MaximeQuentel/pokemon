@@ -13,7 +13,7 @@ class Pokemon {
     }
 
     toString() {
-        return `${this.nom} : #${this.id}, [${this.types.join(', ')}], [STA: ${this.stamina}, ATK: ${this.attack}, DEF: ${this.defense}], Rapides = [${this.fast_moves.map(m => m.nom).join(', ')}], Chargées = [${this.charged_moves.map(m => m.nom).join(', ')}]`;
+        return `${this.nom}: #${this.id}, [${this.types.map(t => t.typeName).join(', ')}], [STA: ${this.stamina}, ATK: ${this.attack}, DEF: ${this.defense}], Rapides = [${this.fast_moves.map(m => m.nom).join(', ')}], Chargées = [${this.charged_moves.map(m => m.nom).join(', ')}]`;
     }
 
     getTypes() {
@@ -21,15 +21,13 @@ class Pokemon {
     }
 
     getAttacks() {
-        return [this.fast_moves, this.charged_moves];
+        return this.attack.concat(this.fast_moves).concat(this.charged_moves);
     }
 
     static fill_pokemons() {
-        this.all_pokemons = {};
-
-        pokemons.forEach(pokemon => {
-            const pkmn = new Pokemon(pokemon.id, pokemon.name, pokemon.stamina, pokemon.attack, pokemon.defense, pokemon.types, pokemon.fast_moves, pokemon.charged_moves);
-            this.all_pokemons[pokemon.id] = pkmn;
+        pokemons.filter(p => p.form === 'normal').forEach(pokemon => {
+            const pkmn = new Pokemon(pokemon.id, pokemon.name, pokemon.stamina, pokemon.attack.map(idAtk => Attacks.all_attacks[idAtk]), pokemon.defense, pokemon.types.map(typeName => TypeError.all_types[typeName]), pokemon.fast_moves, pokemon.charged_moves);
+            Pokemon.all_pokemons[pokemon.id] = pkmn;
         });
     }
 }
