@@ -82,20 +82,51 @@ class Pokemon {
     }
 
     static fill_pokemons() {
-        pokemons.filter(p => p.form === 'Normal').forEach(pokemon => {
+        Pokemon.all_pokemons = {};
 
-            let types = pokemon.type.map(tName => Type.all_types[tName]);
-            let attaquesRapides = pokemon.fast_moves.map(id => Attack.all_attacks[id]);
-            let attaquesChargees = pokemon.charged_moves.map(id => Attack.all_attacks[id]);
+        for (const data of pokemons) {
+            if (data.form !== 'Normal') continue;
 
-            const pkmn = new Pokemon(pokemon.pokemon_id, pokemon.pokemon_name, pokemon.base_stamina, pokemon.base_attack, pokemon.base_defense, types, attaquesRapides, attaquesChargees);
+            const typesEntry = pokemon_types.find(
+                pt => pt.pokemon_id === data.pokemon_id
+            );
+            const types = typesEntry
+                ? typesEntry.type.map(name => Type.all_types[name]).filter(Boolean)
+                : [];
 
-            Pokemon.all_pokemons[pokemon.pokemon_id] = pkmn;
-        });
+            const movesEntry = pokemon_moves.find(
+                pm => pm.pokemon_id === data.pokemon_id
+            );
+
+            const findAttackByName = name => {
+                return Object.values(Attack.all_attacks).find(a => a.nom === name) ?? null;
+            };
+
+            let fast = [];
+            let charged = [];
+
+            if (movesEntry) {
+                fast = movesEntry.fast_moves.map(findAttackByName).filter(Boolean);
+                charged = movesEntry.charged_moves.map(findAttackByName).filter(Boolean);
+            }
+
+            const pkmn = new Pokemon(
+                data.pokemon_id,
+                data.pokemon_name,
+                data.base_stamina,
+                data.base_attack,
+                data.base_defense,
+                types,
+                fast,
+                charged
+            );
+
+            pkmn.form = data.form;
+
+            Pokemon.all_pokemons[data.pokemon_id] = pkmn;
+        }
     }
 }
-
-fill_pokemons();
 
 // fonctions utiles :
 function calcEfficiency(attackTypeName, defenderTypes) {

@@ -2,12 +2,16 @@
 <html lang="fr">
 <head>
     <link rel="stylesheet" href="style.css">
-    <script src="data/pokemons.js"></script>
     <script src="data/type_effectiveness.js"></script>
-    <script src="js/class_type.js"></script>
-    <script src="js/class_attack.js"></script>
-    <script src="js/class_pokemon.js"></script>
-    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="data/class_type.js"></script>
+    <script src="data/fast_moves.js"></script>
+    <script src="data/charged_moves.js"></script>
+    <script src="data/class_attack.js"></script>
+    <script src="data/pokemon_types.js"></script>
+    <script src="data/pokemon_moves.js"></script>
+    <script src="data/pokemons.js"></script>
+    <script src="data/class_pokemon.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
@@ -40,6 +44,15 @@
     <div>
         <button id="prec">PREC</button>
         <button id="suiv">SUIV</button>
+    </div>
+    <div id="popup">
+        <span class="close-button">&times;</span>
+        <div id="details">
+        
+        </div>
+    </div>
+    <div id="image-hover-popup">
+        <img id="image-zoom" src="">
     </div>
 </body>
 </html>
